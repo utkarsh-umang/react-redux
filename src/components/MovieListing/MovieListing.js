@@ -1,6 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getAllMovies, getAllShows } from "../../features/movies/movieSlice";
+import {
+  getAllMovies,
+  getAllShows,
+  getLoadingStatus,
+} from "../../features/movies/movieSlice";
 import MovieCard from "../MovieCard/MovieCard";
 import "./MovieListing.scss";
 import Slider from "react-slick";
@@ -9,6 +13,7 @@ import { Settings } from "../../common/settings";
 const MovieListing = () => {
   const movies = useSelector(getAllMovies);
   const shows = useSelector(getAllShows);
+  const loading = useSelector(getLoadingStatus);
   let renderMovies = "";
   let renderShows = "";
 
@@ -31,20 +36,27 @@ const MovieListing = () => {
         <h3>{shows.Error}</h3>
       </div>
     );
+
   return (
     <div className="movie-wrapper">
-      <div className="movie-list">
-        <h2>Movies</h2>
-        <div className="movie-container">
-          <Slider {...Settings}>{renderMovies}</Slider>
-        </div>
-      </div>
-      <div className="show-list">
-        <h2>Shows</h2>
-        <div className="movie-container">
-          <Slider {...Settings}>{renderShows}</Slider>
-        </div>
-      </div>
+      {loading ? (
+        <div className="loader">...Loading</div>
+      ) : (
+        <>
+          <div className="movie-list">
+            <h2>Movies</h2>
+            <div className="movie-container">
+              <Slider {...Settings}>{renderMovies}</Slider>
+            </div>
+          </div>
+          <div className="show-list">
+            <h2>Shows</h2>
+            <div className="movie-container">
+              <Slider {...Settings}>{renderShows}</Slider>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

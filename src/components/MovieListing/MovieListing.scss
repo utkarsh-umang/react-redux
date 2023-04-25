@@ -9,6 +9,20 @@
     }
 }
 
+.movies-error {
+    color: $font-primary;
+}
+
+.shows-error {
+    color: $font-primary;
+}
+
+.loader {
+    color: $font-primary;
+    display: flex;
+    justify-content: center;
+}
+
 // .movie-container {
 //     display: grid;
 //     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));

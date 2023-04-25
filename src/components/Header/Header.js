@@ -13,6 +13,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
+    if (term === "") return alert("Search bar empty!!!");
     dispatch(fetchAsyncMovies(term));
     dispatch(fetchAsyncShows(term));
     setTerm("");
